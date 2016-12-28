@@ -3,13 +3,10 @@ package servelet.ch01.ex03;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Server03 {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException  {
@@ -28,24 +25,17 @@ public class Server03 {
 				long l = ((Cat) o).getBirthday();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String ndate =sdf.format(l);
-				Date date = sdf.parse(ndate);
 				System.out.println(ndate);
-//				System.out.println(date);
-				
+
 			}else if(o instanceof Dog){
 				Dog d = (Dog) o;
 				System.out.println("Server03:讀到" + o.toString());
 				long l = ((Dog) o).getBirthday();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 				String ndate =sdf.format(l);
-				Date date = sdf.parse(ndate);
 				System.out.println(ndate);
-//				System.out.println(date);
-				
-				
 			}
-			
-			
+
 			System.out.println("Server03:程式結束");
 		}catch(IOException e ){
 			e.printStackTrace();
