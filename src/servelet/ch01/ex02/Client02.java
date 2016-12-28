@@ -1,4 +1,4 @@
-package servelet.ex02;
+package servelet.ch01.ex02;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

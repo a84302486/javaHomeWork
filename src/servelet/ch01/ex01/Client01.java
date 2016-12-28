@@ -1,4 +1,4 @@
-package servelet.ex01;
+package servelet.ch01.ex01;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
