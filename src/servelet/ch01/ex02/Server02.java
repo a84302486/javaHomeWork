@@ -54,7 +54,7 @@ public class Server02 {
 			System.out.println("max="+max+",min="+min+",sum="+sum+",avg="+avg);
 			oos.writeObject(DB);
 			oos.writeObject(null);
-			oos.close();
+
 			System.out.println("Server02:資料傳送完畢");
 		}catch(IOException e){
 			e.printStackTrace();

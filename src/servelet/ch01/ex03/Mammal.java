@@ -1,6 +1,8 @@
 package servelet.ch01.ex03;
 
-public class Mammal {
+import java.io.Serializable;
+
+public class Mammal implements Serializable {
 	
 		private String name;
 		private long birthday;

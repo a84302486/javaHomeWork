@@ -1,6 +1,8 @@
 package servelet.ch01.ex03;
 
-public class Cat extends Mammal {
+import java.io.Serializable;
+
+public class Cat extends Mammal implements Serializable {
 
 	public Cat(long birthday) {
 		super(birthday);
