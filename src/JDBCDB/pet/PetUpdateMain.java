@@ -1,4 +1,4 @@
-package JDBCDB;
+package JDBCDB.pet;
 
 
 

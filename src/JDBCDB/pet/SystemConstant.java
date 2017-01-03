@@ -1,4 +1,4 @@
-package JDBCDB;
+package JDBCDB.pet;
 
 public class SystemConstant {    
     public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; 

@@ -1,4 +1,4 @@
-package JDBCDB;
+package JDBCDB.pet;
 import java.io.BufferedReader;
 import java.io.CharArrayWriter;
 import java.io.File;

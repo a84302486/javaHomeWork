@@ -33,7 +33,7 @@ public class Server01 {
 				    int mul = x*y;
 					dos.write(mul);
 					System.out.println("S:輸出兩個亂數的積:" + mul);
-				    double div = x/y ; 
+				    double div = (int)x/y ; 
 					dos.writeDouble(div);
 					System.out.println("S:輸出兩個亂數的商:" + div);
 					System.out.println("S:程式結束");

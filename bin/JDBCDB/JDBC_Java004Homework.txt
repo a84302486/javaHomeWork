@@ -1,0 +1,254 @@
+﻿作業一: 新建一個表格Pet (寵物表格)，表格的結構如下：
+
+Pet:
+
+id   		int   NOT NULL Primary Key AUTO_INCREMENT,  
+petName 	varchar(20),     -- 寵物名稱 
+masterName	varchar(32),     -- 主人姓名
+birthday    date,            -- 生日
+price       int,　　　       -- 價格
+weight      double,			 -- 重量
+filename    varchar(60),     -- 圖片檔檔名
+picture     longblob,        -- 圖片
+comment     longclob         -- 評語
+
+
+請編寫PetDAO.java，內含
+public int insert(PetBean pb)
+public int update(PetBean pb) 
+public int delete(int key)
+public PlaceBean findByPrimaryKey(int key)
+public List<PlaceBean> findAll()
+等五個方法。
+
+必須自行建立表格，自行準備 Create Table 與 Drop Table的SQL敘述。
+可以參考DAODemo專案來撰寫。
+
+
+樣板資料: 
+1,史奴比,張君雅,2009-07-23, 800, 10.5, Snoopy1.png, 
+2,米小鼠,劉美芳,2004-11-05, 300, 0.85, Micky1.jpg, 
+3,孫凱蒂,孫慧霞,2015-04-30, 750, 3.85, Kitty1.jpg, 
+
+---------------------------------------------------------------------
+
+作業二: 請由網路下載名人的圖片(網址在下方)，然後將圖片與名人相關資訊寫入表格內
+
+新建一個表格Celebrity，表格的結構如下：
+
+Pet:
+
+id   		int   NOT NULL Primary Key AUTO_INCREMENT,  
+CeleName 	varchar(30),     -- 名人姓名 
+gender 	    varchar(1),      -- 性別(M:Male, F:Female) 
+filename    varchar(60),     -- 圖片檔檔名(如vin_diesel_1.jpg)
+size        BigInt,          -- 檔案大小
+timesave    DateTime,        -- 存檔當時的時間戳 
+picture     longblob,        -- 圖片內容
+
+
+參考網站: 
+http://www.space-fox.com/wallpapers/celebsm/vin-diesel/vin_diesel_1.jpg (有9張圖片)
+http://www.space-fox.com/wallpapers/celebs/penelope-cruz/penelope_cruz_1.jpg (有64張圖片)
+http://www.space-fox.com/wallpapers/celebsm/tom-cruise/tom_cruise_1.jpg (有10張圖片)
+
+---------------------------------------------------------------------
+
+作業三: (網路講義的第一個作業)
+
+請撰寫兩個程式Client01.java與Server01.java，
+Client01.java 的功能:
+  A. 隨機產生兩個介於1-100的亂數，並於螢幕上顯示這兩個亂數:
+	   『Client01: 兩個隨機亂數為 X, Y』
+	   
+  B. 將這兩個亂數透過網路送達到Server端，由Server01.java讀取
+  
+  C. 依序接收Server01.java送回的和(sum)、差(sub)、積(mul)、商(div)等四個數字，並將收到的數字顯示於螢幕上：
+	   『Client01: 兩個亂數的和: sum』
+	   『Client01: 兩個亂數的差: sub』
+	   『Client01: 兩個亂數的積: mul』
+	   『Client01: 兩個亂數的商: div』
+	   
+  D. 顯示
+	   『Client01: 程式結束』
+
+Server01.java的功能:
+  A. 接收Client01.java送來的兩個亂數，並於螢幕上顯示這兩個亂數:
+	   『Server01: 兩個亂數: X, Y』
+	   
+  B. 計算這兩個亂數和、差、積、商，並顯示於螢幕上: 
+	   『Server01: 兩個亂數的和: sum』
+	   『Server01: 兩個亂數的差: sub』
+	   『Server01: 兩個亂數的積: mul』
+	   『Server01: 兩個亂數的商: div』
+
+  C. 透過網路將這四個計算出來的數字送回到Client端，然後顯示
+	   『Server01: 程式結束』
+
+---------------------------------------------------------------------
+
+作業四: (網路講義的第二個作業)
+
+請撰寫兩個程式Client02.java與Server02.java，
+Client02.java 的功能:
+  A. 隨機產生N個介於1-100的亂數，N為介於5至10的亂數，即 
+   5 <= N <= 10 並於螢幕上顯示這些亂數:
+  『Client02: N個隨機亂數為 X1, X2, ..., XN』
+  
+  B. 將這N個亂數透過網路送達到Server端，由Server02.java讀取
+       (沒有規定要如何傳送這N個亂數)
+	   
+  C. 接收Server02.java送回的DataBean類別的物件，此類別有五個屬性，內容如下: 
+  
+public class DataBean {
+	   // 你需要自行加入適當的建構子、Getter/Setter與其他必要的關鍵字	
+		private int num;   	// 亂數個數
+		private int max;   	// 最大數
+		private int min;		// 最小數
+		private int sum;		// 總和
+		private double avg;	// 平均
+}
+
+D. 顯示
+	   『Client02: 程式結束』
+	   
+	   
+Server02.java的功能:
+A. 接收Client02.java送來的N個亂數，並於螢幕上顯示這些亂數:
+	   『Server02: 收到的亂數: x1, x2, ...xn』	   
+	   
+B. 計算這N個亂數的個數、最大、最小、總和、平均，並顯示於螢幕上: 
+	   『Server02: 亂數的個數: num』
+	   『Server02: 最大的亂數: max』
+	   『Server02: 最小的亂數: min』
+	   『Server02: 亂數的總和: sum』
+	   『Server02: 亂數的平均: avg』
+	   
+C. 將這五個計算出來的數字封裝在DataBean物件內，然後透過網路將
+       此物件寫回給Client端。
+	   
+D. 於螢幕上顯示
+	   『Server02: 程式結束』
+
+---------------------------------------------------------------------
+
+作業五: (網路講義的第三個作業)
+
+請撰寫兩個程式Client03.java與Server03.java
+假設現有三個類別如下:
+// Mammal類別
+package ex03;
+public class Mammal {
+	private String name;
+	private long birthday;
+	public Mammal(String name, long birthday) {
+		this.name = name;
+		this.birthday = birthday;
+	}
+	public Mammal(long birthday) {
+		this.name = "無名氏";
+		this.birthday = birthday;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public long getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(long birthday) {
+		this.birthday = birthday;
+	}
+
+	@Override
+	public String toString() {
+		return getClass().getName() + "姓名: " + name + "生日: " + birthday  ;
+	}
+}
+
+// Dog類別
+package ex03;
+public class Dog extends Mammal {
+
+	public Dog(String name, long birthday) {
+		super(name, birthday);
+	}
+	public Dog(long birthday) {
+		super(birthday);
+	}
+}
+
+// Cat類別
+package ex03;
+public class Cat extends Mammal {
+
+	public Cat(long birthday) {
+		super(birthday);
+	}
+	public Cat(String name, long birthday) {
+		super(name, birthday);
+	}
+}
+
+請撰寫兩個程式Client03.java與Server03.java，
+Client03.java 的功能:
+  A. 將 "2010-12-20 18:27:36" 轉換為long型態的整數: ins.
+  
+  B. 隨機產生1個介於1-10的亂數，如果此數為偶數，產生一個Cat物件， Cat c = new Cat("Kitty", ins);
+	   並於螢幕上顯示『Client03: 產生Cat物件』
+
+	   如果此數為機奇數，產生一個Dog物件
+	      Dog d = new Dog("Snoopy", ins);
+	   並於螢幕上顯示『Client03: 產生Dog物件』
+
+  C.將此物件寫出，透過網路送達到Server端，由Server03.java讀取
+  
+  D. 顯示『Client03: 程式結束』
+  
+Server03.java的功能:
+  A.修改Mammal.java程式，將toString()方法內生日資訊由long型態的birthday，
+    轉換為"yyyy-MM-dd HH:mm:ss"格式的字串。需要用到SimpleDateFormat類別的format()
+	方法。	   
+  
+  B.讀取Clinet03.java送來的Mammal物件，判斷它的型別，如果是Cat物件，於螢幕上顯示
+  『Server03: 讀到Cat物件』，如果是Dog物件，於螢幕上顯示『Server03: 讀到Dog物件』
+  
+  C.於螢幕上顯示『Server03: 』與呼叫該物件toString()的結果。
+  
+  於螢幕上顯示	   
+	   『Server03: 程式結束』
+
+
+---------------------------------------------------------------------
+
+作業六: (網路講義的第四個作業)
+
+請撰寫兩個程式Client04.java與Server04.java，
+
+Client04.java 的功能:
+
+  A.定義一個字串陣列如下: 
+	   String[]  sa = {"MLB／王建民登板 球速飆到150公里",
+        "中心打線發威貢獻6分-皇家拿下2連勝",	   
+	     "MLB／王建民登板 球速飆到150公里", 
+		   "光芒大破紅襪 結束11連敗"};
+		   
+  B.隨機取出字串陣列中的一個字串，於螢幕上顯示 	
+      『Client04: 隨機字串為XXXXXXXXXX』	
+	  
+  C.將此字串透過網路送達到Server端，由Server04.java讀取
+  
+  D.於螢幕上顯示	   
+	   『Client04: 程式結束』
+
+Server04.java 的功能:
+  A.讀取Client04.java送來的字串
+  
+  B.於螢幕上顯示此字串 	
+      『Server04: 客戶端送來的字串為XXXXXXXXXX』	
+	  
+  C. 於螢幕上顯示	   
+	   『Server04: 程式結束』
