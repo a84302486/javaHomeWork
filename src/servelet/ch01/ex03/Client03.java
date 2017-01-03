@@ -33,7 +33,7 @@ public class Client03 {
 				oos.writeObject(d);
 				System.out.println("Client03:¼g¥X" + d +"ª«¥ó");
 			}
-			oos.flush();
+			
 		}catch(IOException e ){
 			e.printStackTrace();
 	}

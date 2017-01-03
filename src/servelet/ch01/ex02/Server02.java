@@ -28,7 +28,7 @@ public class Server02 {
 			int min=0;
 			double avg =  sum / num;
 			
-			for(int i = 0; i < num; i++){
+			for(int i = 0; i < arr.length; i++){
 				arr[i]=dis.readInt();
 				System.out.print(arr[i]+",");
 				sum+=arr[i];

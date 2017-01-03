@@ -11,24 +11,15 @@ public class celebrityBean implements Serializable{
 		super();
 	}
 
-	public celebrityBean(int id, String celeName, String gender, String filename, long size, String timesave,
+	public celebrityBean(String celeName, String gender, String filename, long size, String timesave,
 			byte[] picture) {
 		super();
-		this.id = id;
 		CeleName = celeName;
 		this.gender = gender;
 		this.filename = filename;
 		this.size = size;
 		this.timesave = timesave;
 		this.picture = picture;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getCeleName() {
