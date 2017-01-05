@@ -13,9 +13,9 @@ public class celebrityDAO {
 	}
 	
 	public void createTables() {
-		int n = 0;
-		String sql = "drop table if exists Celebrity";
-		String sql2 = " Create Table Celebrity (" + 
+		
+		String dropTable = "drop table if exists Celebrity";
+		String createTable = " Create Table Celebrity (" + 
 				" id int NOT NULL auto_increment primary key," + 
 				" CeleName    varchar(30), " + 
 				" gender 	  varchar(1), " + 
@@ -25,38 +25,38 @@ public class celebrityDAO {
 				" picture         longBlob " + ")";
 		try (
 			Connection con = DriverManager.getConnection(dbURL);
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			PreparedStatement pstmt2 = con.prepareStatement(sql2);
+			PreparedStatement psDrop = con.prepareStatement(dropTable);
+			PreparedStatement pscreate = con.prepareStatement(createTable);
 			) {
-			n = pstmt.executeUpdate();
-			n = pstmt2.executeUpdate();
+			psDrop.executeUpdate();
+			pscreate.executeUpdate();
 			System.out.println("Table建立成功");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
 	
-	public int insert(celebrityBean cd){
-		int n = 0 ;
-		String sql = "INSERT INTO Celebrity "
+	public void insert(celebrityBean cd){
+	
+		String insertInto = "INSERT INTO Celebrity "
 				+ "VALUES(null, ?, ?, ?, ?, ?, ?)";
 		try (
 		  Connection con = DriverManager.getConnection(dbURL);
-		  PreparedStatement pstmt = con.prepareStatement(sql);		
+		  PreparedStatement psInsert = con.prepareStatement(insertInto);		
 		) {
-			
-			pstmt.setString(1, cd.getCeleName());
-			pstmt.setString(2, cd.getGender());
-			pstmt.setString(3, cd.getFilename());
-			pstmt.setLong(4, cd.getSize());
-			pstmt.setString(5, cd.getTimesave());	
-			pstmt.setBytes(6, cd.getPicture());
-			n = pstmt.executeUpdate();
-			System.out.println("讀檔完成");
+
+			psInsert.setString(1, cd.getCeleName());
+			psInsert.setString(2, cd.getGender());
+			psInsert.setString(3, cd.getFilename());
+			psInsert.setLong(4, cd.getSize());
+			psInsert.setString(5, cd.getTimesave());	
+			psInsert.setBinaryStream(6, cd.getPicture());
+			psInsert.executeUpdate();
+			System.out.println("檔案寫入SQL完成");
 		} catch (SQLException ex) {
 			System.out.println(ex.getSQLState());
 			ex.printStackTrace() ;
 		}
-		return n;
+
 	}
 }

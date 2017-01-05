@@ -1,18 +1,21 @@
 package JDBCDB.Celebrity;
 
+import java.io.InputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class celebrityBean implements Serializable{
 	 int id; String CeleName; String gender; 		
 	 String filename  ; long size; String timesave ; 	
-	 byte[] picture;
+	 InputStream picture;
 	
 	 public celebrityBean() {
 		super();
 	}
 
 	public celebrityBean(String celeName, String gender, String filename, long size, String timesave,
-			byte[] picture) {
+			InputStream picture) {
 		super();
 		CeleName = celeName;
 		this.gender = gender;
@@ -62,13 +65,17 @@ public class celebrityBean implements Serializable{
 		this.timesave = timesave;
 	}
 
-	public byte[] getPicture() {
+	public InputStream getPicture() {
 		return picture;
 	}
 
-	public void setPicture(byte[] picture) {
+	public void setPicture(InputStream picture) {
 		this.picture = picture;
 	}
-	 
+	public static String getDate(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String Date = sdf.format(new Date());
+		return Date;
+	}
 	 
 }
