@@ -1,63 +1,67 @@
 package JDBCDB.Celebrity;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class celebrityUtil {
-	public static void initCelebrity(String url, String encoding , int count){
+	public static void initCelebrity(String url, String encoding , int count) throws IOException{
 		celebrityDAO dao = new celebrityDAO();
 	
-		try (
-			FileInputStream fis = new FileInputStream(url);
-			InputStreamReader in = new InputStreamReader(fis, encoding);
-			BufferedReader br = new BufferedReader(in);
-			){
-			String urlHead = url.substring(url.lastIndexOf("_"));
+			String urlHead = url.substring(0,url.lastIndexOf("_")+1);
 			String urlEnd = url.substring(url.lastIndexOf("."));
+			
 			for (int x=1;x <= count;x++ ) {
 			url = urlHead + x + urlEnd;
 			  String[] sa = url.split("/");
 			  String gender	 = sa[4].trim();
 			  String celeName  = sa[5].trim();
 			  if(gender.equals("celebsm")){
-				  gender = "Male";
+				  gender = "M";
 			  }else{
-				  gender = "Female";
+				  gender = "F";
 			  }
 			  String filename  = sa[6].trim();
 			  int size = 0;
 			  SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			  
 			  String timesave  = sdf.format(new Date());
-			  byte[] picture = celebrityUtil.fileToBytes("pics\\"+ sa[6].trim());
-			 
-			  
+			  System.out.println("第"+x+"個圖片讀取成功");
+			  byte[] picture = celebrityUtil.fileToBytes(url);
+
 			  celebrityBean cd = new celebrityBean (celeName, gender, filename, size, timesave, 
 					  picture);
 			  dao.insert(cd);
-
 			}
 			System.out.println("讀取成功");
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
-			ex.printStackTrace();
-		}
 	}
-	public static byte[] fileToBytes(String filenameA) {
-		File f = new File(filenameA);
-		int len = (int) f.length();
-		byte[] b = new byte[len];
-		try (FileInputStream fis = new FileInputStream(f);) {
-			fis.read(b);
-		} catch (Exception ex) {
-			ex.getMessage();
+	
+	public static byte[] fileToBytes(String surl) throws IOException {
+		try {
+			URL url = new URL(surl);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			int contentLength = con.getContentLength();
+			byte[] img = new byte[contentLength];
+			byte[] tempImg = new byte[8192];
+			int readLen = 0,desPos = 0;
+			System.out.println("開始下載");
+			// System.out.println(contentLength);
+			try (InputStream is = con.getInputStream();) {
+				if(contentLength!=-1){
+					while((readLen = is.read(tempImg))!=-1){
+						System.arraycopy(tempImg, 0, img, desPos, readLen);
+						desPos += readLen;
+					}
+				}
+				return img;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return b;
+		return null;
 	}
-}	
+}
 

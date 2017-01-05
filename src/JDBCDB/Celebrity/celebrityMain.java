@@ -1,10 +1,10 @@
 package JDBCDB.Celebrity;
 
-
+import java.io.IOException;;
 
 public class celebrityMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		celebrityDAO dao = new celebrityDAO();
 		dao.createTables();
 		

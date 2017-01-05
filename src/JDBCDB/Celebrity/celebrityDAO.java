@@ -18,7 +18,7 @@ public class celebrityDAO {
 		String sql2 = " Create Table Celebrity (" + 
 				" id int NOT NULL auto_increment primary key," + 
 				" CeleName    varchar(30), " + 
-				" gender 	  varchar(10), " + 
+				" gender 	  varchar(1), " + 
 				" filename    varchar(60), " + 
 				" size             BigInt, " + 
 				" timesave      timestamp, " + 
@@ -45,12 +45,12 @@ public class celebrityDAO {
 		  PreparedStatement pstmt = con.prepareStatement(sql);		
 		) {
 			
-			pstmt.setString(2, cd.getCeleName());
-			pstmt.setString(3, cd.getGender());
-			pstmt.setString(4, cd.getFilename());
-			pstmt.setLong(5, cd.getSize());
-			pstmt.setString(6, cd.getTimesave());	
-			pstmt.setBytes(7, cd.getPicture());
+			pstmt.setString(1, cd.getCeleName());
+			pstmt.setString(2, cd.getGender());
+			pstmt.setString(3, cd.getFilename());
+			pstmt.setLong(4, cd.getSize());
+			pstmt.setString(5, cd.getTimesave());	
+			pstmt.setBytes(6, cd.getPicture());
 			n = pstmt.executeUpdate();
 			System.out.println("ÅªÀÉ§¹¦¨");
 		} catch (SQLException ex) {

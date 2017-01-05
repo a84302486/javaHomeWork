@@ -9,12 +9,15 @@ import JDBCDB.Celebrity.celebrityUtil;
 public class test {
 
 	public static void main(String[] args) {
-			  int count = 64 ;
+			  int count = 1 ;
 			  String url = "http://www.space-fox.com/wallpapers/celebsm/vin-diesel/vin_diesel_1.jpg";
+			  String urlHead = url.substring(0,url.lastIndexOf("_")+1);
 			  String urlEnd = url.substring(url.lastIndexOf("."));
 			  for (int x=1;x <= count;x++ ) {
-				String url2 = x + urlEnd;
-				System.out.println("²Ä"+x+"­Ó="+url2);
+				String url2 = urlHead+ x + urlEnd;
+				System.out.println("1:"+urlHead);
+				System.out.println("2:"+urlEnd);
+				System.out.println("3:"+url2);
 			  String[] sa = url.split("/");
 			  String gender	 = sa[4].trim();
 			  String celeName  = sa[5].trim();
